@@ -35,50 +35,52 @@ public class Main implements CommandLineRunner{
 
 	//Boilerplate, pre Java 14
 	private void loopThroughProviders(List<ElectricityProvider> electricityProviders) {
+		Electricity electricity;
+		
 		for (ElectricityProvider provider: electricityProviders)
 		{
 			if (provider instanceof HydroElectricity) 
 			{
 				HydroElectricity hydroElectricity = (HydroElectricity)provider;
-				Electricity electricity = hydroElectricity.generateHydroElectricty();
-				System.out.println(electricity);
-				
+				electricity = hydroElectricity.generateHydroElectricty();
 			}
 			else if (provider instanceof NuclearElectricity)
 			{
 				NuclearElectricity nuclearElectricity = (NuclearElectricity)provider;
-				Electricity electricity = nuclearElectricity.generateNuclearPower();
-				System.out.println(electricity);				
+				electricity = nuclearElectricity.generateNuclearPower();				
 			}	
 			else
 			{
 				throw new RuntimeException("Unknown Type!");
 			}
+			
+			System.out.println(electricity);
 		}
 		
+
 	}
 	
 	// Pattern matching in Java 14 for instanceof operator
 	private void loopThroughProvidersJava14(List<ElectricityProvider> electricityProviders) {
+		Electricity electricity;
+		
 		for (ElectricityProvider provider: electricityProviders)
 		{
-			if (provider instanceof HydroElectricity) 
+			if (provider instanceof HydroElectricity hydroElectricity) 
 			{
-				HydroElectricity hydroElectricity = (HydroElectricity)provider;
-				Electricity electricity = hydroElectricity.generateHydroElectricty();
-				System.out.println(electricity);
+				electricity = hydroElectricity.generateHydroElectricty();
 				
 			}
-			else if (provider instanceof NuclearElectricity)
+			else if (provider instanceof NuclearElectricity nuclearElectricity)
 			{
-				NuclearElectricity nuclearElectricity = (NuclearElectricity)provider;
-				Electricity electricity = nuclearElectricity.generateNuclearPower();
-				System.out.println(electricity);				
+				electricity = nuclearElectricity.generateNuclearPower();				
 			}	
 			else
 			{
 				throw new RuntimeException("Unknown Type!");
 			}
+			
+			System.out.println(electricity);
 		}
 		
 	}
