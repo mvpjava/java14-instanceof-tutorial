@@ -13,4 +13,5 @@ public class Electricity {
 	{
 		return description;
 	}
+	
 }

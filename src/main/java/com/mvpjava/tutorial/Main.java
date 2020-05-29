@@ -12,6 +12,9 @@ import com.mvpjava.tutorial.model.Electricity;
 import com.mvpjava.tutorial.model.ElectricityProvider;
 import com.mvpjava.tutorial.model.HydroElectricity;
 import com.mvpjava.tutorial.model.NuclearElectricity;
+import com.mvpjava.tutorial.model.polymorphism.ElectricityProvider2;
+import com.mvpjava.tutorial.model.polymorphism.HydroElectricity2;
+import com.mvpjava.tutorial.model.polymorphism.NuclearElectricity2;
 
 @SpringBootApplication
 public class Main implements CommandLineRunner{
@@ -25,13 +28,24 @@ public class Main implements CommandLineRunner{
 		System.out.println("Java 14 instanceof Tutorial - MVP Java");
 		
 		ElectricityProvider hydro = new HydroElectricity();
-		ElectricityProvider nucler = new NuclearElectricity();
-		List<ElectricityProvider> electricityProviders = List.of (hydro, nucler);
+		ElectricityProvider nuclear = new NuclearElectricity();
+		List<ElectricityProvider> electricityProviders = List.of (hydro, nuclear);
 		
 		loopThroughProviders(electricityProviders); // normal instanceof - pre Java 14
-		loopThroughProvidersJava14(electricityProviders);
+		loopThroughProvidersJava14(electricityProviders); // new instanceof in Java 14
+		
+		
+		/* ***************************************************************************** 
+		  With Polymorphism, dont even need instanceof for this example 
+		*/
+		ElectricityProvider2 hydro2 = new HydroElectricity2();
+		ElectricityProvider2 nuclear2 = new NuclearElectricity2();
+		List<ElectricityProvider2> electricityProviders2 = List.of (hydro2, nuclear2);
+		
+		loopThroughProvidersWithPolymorphism(electricityProviders2);
 		
 	}
+
 
 	//Boilerplate, pre Java 14
 	private void loopThroughProviders(List<ElectricityProvider> electricityProviders) {
@@ -82,6 +96,11 @@ public class Main implements CommandLineRunner{
 			
 			System.out.println(electricity);
 		}
+		
+	}
+	
+	private void loopThroughProvidersWithPolymorphism(List<ElectricityProvider2> electricityProviders) {
+		electricityProviders.forEach(e -> System.out.println ("polymorphism ..." + e.generateElectricity()));
 		
 	}
 
