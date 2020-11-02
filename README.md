@@ -19,7 +19,7 @@ from mvpjava.com
 
 Blog Post:  http://mvpjava.com/instanceof-java-14/instanceof-java-14
 
-YouTube Tutorial: TBD
+YouTube Tutorial: https://youtu.be/1EDx2z0N7_c
 
 ======================================================
 
